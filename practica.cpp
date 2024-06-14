@@ -4,18 +4,22 @@
 using namespace std;
 
 // Funcion para intercambiar
-void cambio(int a, int b){
+void cambio(int& a, int& b)
+{
     int temp = a;
     a = b;
     b = temp;
 }
 
 // Funcion para encontrar el pivote
-int particion(vector<int>arr, int primerElemento, int ultimoElemento){
+int particion(vector<int>&arr, int primerElemento, int ultimoElemento)
+{
     int pivote = arr[ultimoElemento];
     int i = (primerElemento - 1);
-    for (int j = primerElemento; j<= ultimoElemento - 1; j++){
-        if(arr[j] < pivote){
+    for (int j = primerElemento; j<= ultimoElemento - 1; j++)
+    {
+        if(arr[j] < pivote)
+        {
             i++;
             cambio(arr[i], arr[j]);
         }
@@ -25,21 +29,27 @@ int particion(vector<int>arr, int primerElemento, int ultimoElemento){
 }
 
 // Funcion del quicksort
-void quicksort(vector<int>arr, int primerElemento, int ultimoElemento){
-    if(primerElemento < ultimoElemento){
+void quicksort(vector<int>&arr, int primerElemento, int ultimoElemento)
+{
+    if(primerElemento < ultimoElemento)
+    {
         int pivotDelSort = particion(arr, primerElemento, ultimoElemento);
         quicksort(arr, primerElemento, pivotDelSort-1);
         quicksort(arr, pivotDelSort+1, ultimoElemento);
     }
 }
 
-void mostrarArray(vector<int>arr){
-    for(int i = 0; arr.size(); i++){
+
+void mostrarArray(vector<int>&arr)
+{
+    for(int i = 0; i <= (arr.size()-1); i++)
+    {
         cout<<arr[i]<<endl;
     }
 }
 
-int main(){
+int main()
+{
     vector<int>arr = {0, 2, 6, 4, 10, 8};
     mostrarArray(arr);
     int primerElemento = arr[0];
